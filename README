@@ -1,3 +1,2 @@
-JPetStore 6 is a full web application built on top of MyBatis 3, Spring 3 and Stripes. It is available for downloading in the downloads section of MyBatis project site. In this section we will walk through this sample to understand how is it built and learn how to run it.
-
-See: http://www.mybatis.org/spring/sample.html
+This project is based on JPetStore 6 which created by offical mybatis team. The origin JPetStore 6 is built on MyBatis 3, Spring 3 and Stripes. I changed it to Spring MVC 3 instead of Stripes because I prefer Spring MVC and I know nothing about Stripes!
+See the origin project demo: http://www.mybatis.org/spring/sample.html
