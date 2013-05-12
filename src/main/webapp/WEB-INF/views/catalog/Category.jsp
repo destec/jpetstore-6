@@ -38,6 +38,9 @@
 			<!-- /.navbar -->
 		</div>
 		<h2>${categoryId }</h2>
+		<h2>${productionList }</h2>
+		<table>
+		</table>
 	</div>
 </body>
 </html>
