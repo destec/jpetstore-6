@@ -8,46 +8,46 @@
 
   <select id="getItemListByProduct" parameterType="string" resultType="Item">
     SELECT
-      I.ITEMID,
-      LISTPRICE,
-      UNITCOST,
-      SUPPLIER AS supplierId,
-      I.PRODUCTID AS "product.productId",
-      NAME AS "product.name",
-      DESCN AS "product.description",
-      CATEGORY AS "product.categoryId",
-      STATUS,
-      ATTR1 AS attribute1,
-      ATTR2 AS attribute2,
-      ATTR3 AS attribute3,
-      ATTR4 AS attribute4,
-      ATTR5 AS attribute5
-    FROM ITEM I, PRODUCT P
-    WHERE P.PRODUCTID = I.PRODUCTID
-    AND I.PRODUCTID = #{value}
+      I.itemid,
+      listprice,
+      unitcost,
+      supplier AS supplierId,
+      I.productid AS "product.productId",
+      name AS "product.name",
+      descn AS "product.description",
+      category AS "product.categoryId",
+      status,
+      attr1 AS attribute1,
+      attr2 AS attribute2,
+      attr3 AS attribute3,
+      attr4 AS attribute4,
+      attr5 AS attribute5
+    FROM item I, product P
+    WHERE P.productid = I.productid
+    AND I.productid = #{value}
   </select>
 
   <select id="getItem" parameterType="string" resultType="Item">
     select
-      I.ITEMID,
-      LISTPRICE,
-      UNITCOST,
-      SUPPLIER AS supplierId,
-      I.PRODUCTID AS "product.productId",
-      NAME AS "product.name",
-      DESCN AS "product.description",
-      CATEGORY AS "product.categoryId",
-      STATUS,
-      ATTR1 AS attribute1,
-      ATTR2 AS attribute2,
-      ATTR3 AS attribute3,
-      ATTR4 AS attribute4,
-      ATTR5 AS attribute5,
-      QTY AS quantity
-    from ITEM I, INVENTORY V, PRODUCT P
-    where P.PRODUCTID = I.PRODUCTID
-      and I.ITEMID = V.ITEMID
-      and I.ITEMID = #{value}
+      I.itemid,
+      listprice,
+      unitcost,
+      supplier AS supplierId,
+      I.productid AS "product.productId",
+      name AS "product.name",
+      descn AS "product.description",
+      category AS "product.categoryId",
+      status,
+      attr1 AS attribute1,
+      attr2 AS attribute2,
+      attr3 AS attribute3,
+      attr4 AS attribute4,
+      attr5 AS attribute5,
+      qty AS quantity
+    from item I, inventory V, product P
+    where P.productid = I.productid
+      and I.itemid = V.itemid
+      and I.itemid = #{value}
   </select>
 
   <select id="getInventoryQuantity" parameterType="string" resultType="int">

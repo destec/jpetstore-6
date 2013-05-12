@@ -2,6 +2,7 @@ package lib.cat.petstore.controller;
 
 import java.util.List;
 
+import lib.cat.petstore.entity.Item;
 import lib.cat.petstore.entity.Product;
 import lib.cat.petstore.service.CatalogService;
 
@@ -22,7 +23,7 @@ public class CatalogController {
 	@Autowired
 	private CatalogService catalogService;
 	private List<Product> productionList;
-	//private Category category = new Category();
+	private List<Item> itemList;
 
 	@RequestMapping(value = "/")
 	public String main() {
@@ -32,16 +33,40 @@ public class CatalogController {
 
 	@RequestMapping(value="/category/{categoryId}")
 	public String category(@PathVariable String categoryId, Model model) {
+		
 		logger.info("Enter category of " + categoryId);
-		//model.addAttribute(categoryId);
+		
 		//show the list of items of certain category
-		//productionList = catalogService.getProductListByCategory(categoryId);
 		productionList = (List<Product>) catalogService.getProductListByCategory(categoryId);
-		String pro1 = productionList.get(0).toString();
-		System.out.println(productionList + "" + pro1);
-		//model.addAttribute(test);
 		model.addAttribute("productionList", productionList);
-		model.addAttribute("pro1", pro1);
+		
 		return "catalog/Category";
+	}
+	
+	@RequestMapping("/product/{productId}")
+	public String product(@PathVariable String productId, Model model) {
+		
+		logger.info("Enter product of " + productId);
+		
+		itemList = (List<Item>) catalogService.getItemListByProduct(productId);
+		Product p = catalogService.getProduct(productId);
+		model.addAttribute("itemList", itemList);
+		model.addAttribute("product", p);
+		
+		return "catalog/Product";
+	}
+	
+	@RequestMapping("/item/{itemId}")
+	public String item(@PathVariable String itemId, Model model) {
+		
+		logger.info("Enter item of " + itemId);
+		
+		Item i = catalogService.getItem(itemId);
+		Product p = i.getProduct();
+		System.out.println(p.getDescription());
+		model.addAttribute("item", i);
+		model.addAttribute("product", p);
+		
+		return "catalog/Item";
 	}
 }

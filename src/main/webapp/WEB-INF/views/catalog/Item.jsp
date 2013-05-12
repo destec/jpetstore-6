@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Category - ${categoryId }</title>
+<title></title>
 <link type="text/css"
 	href="../../resources/css/bootstrap-responsive.min.css"
 	rel="StyleSheet">
@@ -43,19 +43,30 @@
 		</div>
 		<div class="row-fluid">
 			<div class="span12">
-				<h2>${categoryId }</h2>
-				<table class="table table-striped">
+				<h2>${product.name }</h2>
+				<table class="table table-bordered">
+
 					<tr>
-						<th width='40%'>Product ID</th>
-						<th>Product Name</th>
+						<td>${product.description }</td>
+					</tr>
+					<tr>
+						<td>${item.itemId }</td>
+					</tr>
+					<tr>
+						<td>${item.attribute1 } ${item.attribute2 } ${item.attribute3
+							} ${item.attribute4 } ${item.attribute5 } ${product }</td>
 					</tr>
 
-					<c:forEach var="item" items="${productionList }" varStatus="status">
-						<tr>
-							<td><a href="../product/${item.productId }">${item.productId }</a></td>
-							<td>${item.name }</td>
-						</tr>
-					</c:forEach>
+					<tr>
+						<td><c:if test="${item.quantity <= 0}">
+        Back ordered.
+      </c:if> <c:if test="${item.quantity > 0}">
+      	${item.quantity} in stock.
+	  </c:if></td>
+					</tr>
+					<tr>
+						<td>${item.listPrice }</td>
+					</tr>
 				</table>
 			</div>
 
