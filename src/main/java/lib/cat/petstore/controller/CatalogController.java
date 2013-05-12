@@ -7,6 +7,7 @@ import lib.cat.petstore.service.CatalogService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +19,8 @@ public class CatalogController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
-
-	private CatalogService catalogService = new CatalogService();
+	@Autowired
+	private CatalogService catalogService;
 	private List<Product> productionList;
 	//private Category category = new Category();
 
@@ -30,13 +31,17 @@ public class CatalogController {
 	}
 
 	@RequestMapping(value="/category/{categoryId}")
-	public String catagory(@PathVariable String categoryId, Model model) {
+	public String category(@PathVariable String categoryId, Model model) {
 		logger.info("Enter category of " + categoryId);
-		model.addAttribute(categoryId);
+		//model.addAttribute(categoryId);
 		//show the list of items of certain category
 		//productionList = catalogService.getProductListByCategory(categoryId);
-		System.out.println(catalogService.getCategory(categoryId));
-		model.addAttribute(productionList);
+		productionList = (List<Product>) catalogService.getProductListByCategory(categoryId);
+		String pro1 = productionList.get(0).toString();
+		System.out.println(productionList + "" + pro1);
+		//model.addAttribute(test);
+		model.addAttribute("productionList", productionList);
+		model.addAttribute("pro1", pro1);
 		return "catalog/Category";
 	}
 }

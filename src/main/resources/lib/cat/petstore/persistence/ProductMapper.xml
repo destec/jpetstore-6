@@ -8,31 +8,31 @@
 
   <select id="getProduct" parameterType="string" resultType="Product">
     SELECT
-      PRODUCTID,
-      NAME,
-      DESCN as description,
-      CATEGORY as categoryId
-    FROM PRODUCT
-    WHERE PRODUCTID = #{productId}
+      productid,
+      name,
+      descn as description,
+      category as categoryId
+    FROM product
+    WHERE productid = #{productId}
   </select>
 
   <select id="getProductListByCategory" parameterType="string" resultType="Product">
     SELECT
-      PRODUCTID,
-      NAME,
-      DESCN as description,
-      CATEGORY as categoryId
-    FROM PRODUCT
-    WHERE CATEGORY = #{value}
+      productid,
+      name,
+      descn as description,
+      category as categoryId
+    FROM product
+    WHERE category = #{value}
   </select>
 
   <select id="searchProductList" parameterType="string" resultType="Product">
     select
-      PRODUCTID,
-      NAME,
-      DESCN as description,
-      CATEGORY as categoryId
-    from PRODUCT
+      productid,
+      name,
+      descn as description,
+      category as categoryId
+    from product
     WHERE lower(name) like #{value}
   </select>
 
